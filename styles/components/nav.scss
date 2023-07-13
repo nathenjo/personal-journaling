@@ -1,0 +1,21 @@
+.nav-component {
+    width: 75%;
+    height: 80px;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: $green;
+    border-radius: 100px 100px 0px 0px;
+    padding: 15px 0px;
+
+    button {
+        font-family: 'Indie Flower', sans-serif;
+        padding: 0px 10px;
+        border: 3px dotted transparent;
+    }
+
+    .selected-view {
+        border-radius: 15px;
+        padding: 0px 10px;
+        border: 3px dotted black;
+    }
+}

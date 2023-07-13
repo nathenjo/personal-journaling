@@ -1,0 +1,19 @@
+@import './variables.scss';
+
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-color: $blue;
+    color: $black;
+    font-family: 'Indie Flower', sans-serif;
+}
+
+@import './index.scss';
+@import './components/nav.scss';
+@import './components/view-button.scss';
+@import './components/create-prompt.scss';
