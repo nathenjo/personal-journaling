@@ -12,6 +12,7 @@ export default function CreatePrompt(props) {
                 <div className='form-group existing-prompts-wrapper'>
                     <label>Previous Prompts:</label>
                     <select>
+                        <option>-</option>
                         {existingPrompts.map((item, index) => {
                             return <option key={index} value={item.id}>{item.text}</option>
                         })}
