@@ -4,7 +4,7 @@ export default function CreatePrompt(props) {
 
     const {} = props;
 
-    const [existingPrompts, setExistingPrompts] = useState([{'id': '890g371h04', 'text': 'Journal Prompt 1'}]);
+    const [existingPrompts, setExistingPrompts] = useState([]);
 
     return (
         <div className='create-prompt-wrapper'>
@@ -26,7 +26,7 @@ export default function CreatePrompt(props) {
                     <input className='form-input' id='createPromptName' type='text' />
                 </div>
                 <div className='form-group'>
-                    <label className='form-input-label' htmlFor='createPromptName'>Prompt Content:</label>
+                    <label className='form-input-label' htmlFor='createPromptName'>Prompt Question/Statement:</label>
                     <input className='form-input' id='createPromptName' type='text' />
                 </div>
             </form>
