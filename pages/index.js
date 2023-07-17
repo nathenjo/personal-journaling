@@ -17,7 +17,7 @@ export default function Index(props) {
         <main className='main-wrapper'>
             <section className='main-section'>
                 <h1>Personal Journaling Application</h1>
-                <content>
+                <content className='content-section'>
                     {selectedView != 'none' && <h3>{selectedView}</h3>}
                     {selectedView == 'Create Prompt' && <CreatePrompt />}
                 </content>
