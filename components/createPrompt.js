@@ -6,6 +6,24 @@ export default function CreatePrompt(props) {
 
     const [existingPrompts, setExistingPrompts] = useState([]);
 
+    const callAPI = async () => {
+        try {
+            const res = await fetch(
+                `https://blooming-refuge-50053-885d686d1776.herokuapp.com/prompt`,
+                {
+                    method: 'GET',
+                    headers: {
+                        'access_token': process.env.API_KEY,
+                    },
+                }
+            );
+            const data = await res.json();
+            console.log(data);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     return (
         <div className='create-prompt-wrapper'>
             {existingPrompts.length > 0 && 
@@ -19,7 +37,7 @@ export default function CreatePrompt(props) {
                     </select>
                 </div>
             }
-
+            <button onClick={() => callAPI()}>API Call</button>
             <form className='create-prompt-form'>
                 <div className='form-group'>
                     <label className='form-input-label' htmlFor='createPromptName'>Prompt Name:</label>
