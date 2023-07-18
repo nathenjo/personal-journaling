@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 export default function CreatePrompt(props) {
 
@@ -12,8 +12,10 @@ export default function CreatePrompt(props) {
                 `https://blooming-refuge-50053-885d686d1776.herokuapp.com/prompt`,
                 {
                     method: 'GET',
+                    mode: 'cors',
                     headers: {
                         'access_token': process.env.API_KEY,
+                        'Content-Type': 'application/json',
                     },
                 }
             );
