@@ -6,25 +6,30 @@ export default function CreatePrompt(props) {
 
     const [existingPrompts, setExistingPrompts] = useState([]);
 
-    const callAPI = async () => {
-        try {
-            const res = await fetch(
-                `https://blooming-refuge-50053-885d686d1776.herokuapp.com/prompt`,
-                {
-                    method: 'GET',
-                    mode: 'cors',
-                    headers: {
-                        'access_token': process.env.API_KEY,
-                        'Content-Type': 'application/json',
-                    },
-                }
-            );
-            const data = await res.json();
-            console.log(data);
-        } catch (err) {
-            console.log(err);
-        }
-    };
+    useEffect(() => {
+        console.log('Create prompt mount/change');
+        const getExistingPrompts = async () => {
+            try {
+                const res = await fetch(
+                    `https://blooming-refuge-50053-885d686d1776.herokuapp.com/prompt`,
+                    {
+                        method: 'GET',
+                        mode: 'cors',
+                        headers: {
+                            'access_token': process.env.API_KEY,
+                            'Content-Type': 'application/json',
+                        },
+                    }
+                );
+                const data = await res.json();
+                console.log(data.data);
+                setExistingPrompts([data.data]);
+            } catch (err) {
+                return [];
+            }
+        };
+        getExistingPrompts();
+    }, [])
 
     return (
         <div className='create-prompt-wrapper'>
@@ -33,13 +38,12 @@ export default function CreatePrompt(props) {
                     <label>Previous Prompts:</label>
                     <select>
                         <option>-</option>
-                        {existingPrompts.map((item, index) => {
-                            return <option key={index} value={item.id}>{item.text}</option>
+                        {existingPrompts[0].map((item, index) => {
+                            return <option key={index} value={item[0].journal_id}>{item[0].prompt_name}</option>
                         })}
                     </select>
                 </div>
             }
-            <button onClick={() => callAPI()}>API Call</button>
             <form className='create-prompt-form'>
                 <div className='form-group'>
                     <label className='form-input-label' htmlFor='createPromptName'>Prompt Name:</label>

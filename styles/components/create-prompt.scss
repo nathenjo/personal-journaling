@@ -6,7 +6,17 @@
     font-size: 24px;
 
     .existing-prompts-wrapper {
-        
+        display: flex;
+        justify-content: space-between;
+        label {
+
+        }
+
+        select {
+            font-size: 20px;
+            padding-left: 10px;
+            font-family: $sans-serif;
+        }
     }
 
     .create-prompt-form {
