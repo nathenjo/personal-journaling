@@ -3,11 +3,13 @@ import React, { useEffect, useState } from 'react';
 import Nav from '../components/nav';
 import CreatePrompt from '../components/createPrompt';
 import JournalEntry from '../components/journalEntry';
+import LoadingIcon from '../components/loadingIcon';
 
 export default function Index(props) {
 
     const {} = props;
 
+    const [isLoading, setIsLoading] = useState(false);
     const [selectedView, setSelectedView] = useState('none');
 
     useEffect(() => {
@@ -22,9 +24,10 @@ export default function Index(props) {
         <main className='main-wrapper'>
             <section className='main-section'>
                 <h1>Personal Journaling Application</h1>
+                {isLoading && <LoadingIcon />}
                 <content>
                     {selectedView != 'none' && <h3>{selectedView}</h3>}
-                    {selectedView == 'Create Prompt' && <CreatePrompt />}
+                    {selectedView == 'Create Prompt' && <CreatePrompt isLoading={isLoading} setIsLoading={setIsLoading}  />}
                     {selectedView == 'Journal Entry' && <JournalEntry />}
                 </content>
                 <Nav setSelectedView={setSelectedView} selectedView={selectedView} propClass='main-nav' />

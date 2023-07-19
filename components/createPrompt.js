@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 
 export default function CreatePrompt(props) {
 
-    const {} = props;
+    const {isLoading, setIsLoading} = props;
 
-    const [existingPrompts, setExistingPrompts] = useState([]);
+    const [existingPrompts, setExistingPrompts] = useState([[]]);
 
     useEffect(() => {
-        console.log('Create prompt mount/change');
         const getExistingPrompts = async () => {
             try {
+                setIsLoading(true);
                 const res = await fetch(
                     `https://blooming-refuge-50053-885d686d1776.herokuapp.com/prompt`,
                     {
@@ -22,10 +22,10 @@ export default function CreatePrompt(props) {
                     }
                 );
                 const data = await res.json();
-                console.log(data.data);
+                setIsLoading(false);
                 setExistingPrompts([data.data]);
             } catch (err) {
-                return [];
+                setExistingPrompts([[]]);
             }
         };
         getExistingPrompts();
@@ -33,7 +33,7 @@ export default function CreatePrompt(props) {
 
     return (
         <div className='create-prompt-wrapper'>
-            {existingPrompts.length > 0 && 
+            {existingPrompts.length > 0 && isLoading == false && 
                 <div className='form-group existing-prompts-wrapper'>
                     <label>Previous Prompts:</label>
                     <select>
@@ -44,6 +44,7 @@ export default function CreatePrompt(props) {
                     </select>
                 </div>
             }
+            {isLoading == false &&
             <form className='create-prompt-form'>
                 <div className='form-group'>
                     <label className='form-input-label' htmlFor='createPromptName'>Prompt Name:</label>
@@ -53,7 +54,7 @@ export default function CreatePrompt(props) {
                     <label className='form-input-label' htmlFor='createPromptName'>Prompt Question/Statement:</label>
                     <input className='form-input' id='createPromptName' type='text' />
                 </div>
-            </form>
+            </form> }
         </div>
     );
 }

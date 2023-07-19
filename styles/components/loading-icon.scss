@@ -1,0 +1,25 @@
+.loading-icon {
+    background-color: $red;
+    color: $black;
+    border: 3px solid $black;
+    padding: 15px;
+    border-radius: 100px;
+    margin: 15px 0px;
+    font-size: 2em;
+    animation-name: loading;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    @keyframes loading {
+        0% {
+            transform: rotate(15deg);
+            border-radius: 100px;
+        }
+
+        100% {
+            transform: rotate(-15deg);
+            border-radius: 150px;
+        }
+    }
+}
